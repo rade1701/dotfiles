@@ -12,6 +12,7 @@ alias ll    "ls -lah --color=auto"
 alias v     "nvim"
 alias t     "tmux"
 alias brave "brave-browser --ozone-platform=wayland"
+alias claude-desktop "claude-desktop --disable-gpu --ozone-platform=wayland"
 alias bw    "bw"
 
 # ── Homelab SSH ────────────────────────────────────────────────────

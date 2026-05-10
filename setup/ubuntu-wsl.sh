@@ -19,7 +19,7 @@ sudo apt install -y \
   alacritty grim \
   fonts-jetbrains-mono fonts-noto-color-emoji \
   wl-clipboard \
-  htop btop ripgrep fd-find bat \
+  htop btop ripgrep fd-find bat fzf \
   python3 python3-pip \
   libfuse2
 
@@ -60,6 +60,18 @@ sudo npm install -g @anthropic-ai/claude-code
 echo "→ Installing OpenAI CLI..."
 pip3 install --user openai --break-system-packages
 
+# ── sway-launcher-desktop (works in nested WSLg) ────────────────────
+echo "→ Installing sway-launcher-desktop..."
+if [ ! -d "$HOME/.local/share/sway-launcher-desktop" ]; then
+  git clone https://github.com/Biont/sway-launcher-desktop.git \
+    "$HOME/.local/share/sway-launcher-desktop"
+fi
+sudo ln -sf "$HOME/.local/share/sway-launcher-desktop/sway-launcher-desktop.sh" \
+  /usr/local/bin/sway-launcher-desktop
+
+mkdir -p "$HOME/.local/bin"
+ln -sf "$DOTFILES/bin/launcher" "$HOME/.local/bin/launcher"
+
 # ── Link configs ────────────────────────────────────────────────────
 echo "→ Linking configs..."
 mkdir -p "$HOME/.config/sway"
@@ -80,6 +92,9 @@ sudo cp "$DOTFILES/wsl/wsl.conf" /etc/wsl.conf
 # ── Fish as default shell ────────────────────────────────────────────
 echo "→ Setting fish as default shell..."
 sudo chsh -s "$(which fish)" "$USER"
+
+# ── Cleanup stale configs ────────────────────────────────────────────
+rm -f "$HOME/.config/fish/conf.d/"*cargo* "$HOME/.config/fish/conf.d/"*rust*
 
 echo ""
 echo "╔══════════════════════════════════════╗"

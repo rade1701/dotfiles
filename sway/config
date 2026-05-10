@@ -2,7 +2,7 @@
 # Mod = Alt (Super captured by Windows in WSLg)
 set $mod Mod1
 set $terminal alacritty
-set $menu rofi -show drun
+set $menu alacritty --class launcher -e $HOME/.local/bin/launcher
 set $browser brave-browser --ozone-platform=wayland
 
 font pango:JetBrains Mono 11
@@ -23,6 +23,7 @@ exec mako
 bindsym $mod+Return exec $terminal
 bindsym $mod+d      exec $menu
 bindsym $mod+b      exec $browser
+bindsym $mod+c      exec claude-desktop --disable-gpu --ozone-platform=wayland
 bindsym $mod+q      kill
 bindsym $mod+h      focus left
 bindsym $mod+j      focus down
@@ -68,5 +69,6 @@ output * bg #1a1b26 solid_color
 
 for_window [app_id="org.gnome.Calculator"] floating enable
 for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="launcher"] floating enable, resize set 600 400
 
 bar { mode hide }
