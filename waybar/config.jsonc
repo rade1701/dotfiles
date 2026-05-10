@@ -1,0 +1,18 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 32,
+    "margin-top": 4,
+    "margin-left": 8,
+    "margin-right": 8,
+    "modules-left": ["sway/workspaces", "sway/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["cpu", "memory", "network", "tray"],
+    "sway/workspaces": { "format": "{name}", "on-click": "activate" },
+    "sway/window": { "max-length": 50 },
+    "clock": { "format": "{:%a %d %b  %H:%M}", "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>" },
+    "cpu": { "format": " {usage}%", "interval": 2 },
+    "memory": { "format": " {used:.1f}G", "interval": 5 },
+    "network": { "format-ethernet": " {bandwidthUpBits}", "format-disconnected": "󰌙", "tooltip-format": "{ifname}: {ipaddr}" },
+    "tray": { "spacing": 8, "icon-size": 16 }
+}
